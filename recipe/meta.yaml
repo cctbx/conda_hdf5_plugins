@@ -1,0 +1,58 @@
+# pull latest from GitHub, but currently, the version is listed as 0.1.0
+{% set version = "0.1.0" %}
+
+package:
+  name: hdf5_plugins
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/nexusformat/HDF5-External-Filter-Plugins.git
+  patches:
+    # set plugins dir to lib/plugins
+    - plugindir.patch
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
+    - cmake >=3.0.0
+    - bzip2
+    - lz4
+    - hdf5 >=1.10
+    - h5py
+    - python {{ python }}
+  run:
+    - bzip2
+    - lz4
+    - hdf5 >=1.10
+    - h5py
+    - python
+
+test:
+  imports:
+    - h5py
+  commands:
+    - conda inspect linkages -p $PREFIX hdf5_plugins  # [not win]
+    - conda inspect objects -p $PREFIX hdf5_plugins  # [osx]
+
+about:
+  home: https://github.com/nexusformat/HDF5-External-Filter-Plugins
+  summary: Provides dynamically loadable (compression) filters for HDF5 that are popular for photon or neutron science
+  description: |
+    The external filter mechanism introduced with HDF5 1.8.12 allows applications
+    to utilize custom filters not shipped by the HDF5 core library without
+    recompiling your application. This repository provides external filters for
+    HDF5 for
+      * the LZ4 compression algorithm
+      * BZip2 compression
+      * and the BLOSC library.
+  dev_url: https://github.com/nexusformat/HDF5-External-Filter-Plugins
+  doc_url: https://github.com/nexusformat/HDF5-External-Filter-Plugins
+
+extra:
+  recipe-maintainers:
+    - bkpoon
