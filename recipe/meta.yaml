@@ -14,7 +14,7 @@ source:
     - wix.patch [win]
 
 build:
-  number: 0
+  number: 2
 
 requirements:
   build:
@@ -25,18 +25,12 @@ requirements:
     - bzip2
     - lz4
     - hdf5 >=1.10
-    - h5py
-    - python {{ python }}
   run:
     - bzip2
     - lz4
     - hdf5 >=1.10
-    - h5py
-    - python
 
 test:
-  imports:
-    - h5py
   commands:
     - conda inspect linkages -p $PREFIX hdf5_plugins  # [not win]
     - conda inspect objects -p $PREFIX hdf5_plugins  # [osx]
