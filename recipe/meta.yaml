@@ -24,10 +24,12 @@ requirements:
   host:
     - bzip2
     - lz4
+    - lz4-c
     - hdf5 >=1.10
   run:
     - bzip2
     - lz4
+    - lz4-c
     - hdf5 >=1.10
 
 test:
