@@ -23,12 +23,10 @@ requirements:
     - cmake >=3.0.0
   host:
     - bzip2
-    - lz4
     - lz4-c
     - hdf5 >=1.10
   run:
     - bzip2
-    - lz4
     - lz4-c
     - hdf5 >=1.10
 
