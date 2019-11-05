@@ -14,7 +14,7 @@ source:
     - wix.patch [win]
 
 build:
-  number: 2
+  number: 0
 
 requirements:
   build:
@@ -34,6 +34,8 @@ test:
   commands:
     - conda inspect linkages -p $PREFIX hdf5_plugins  # [not win]
     - conda inspect objects -p $PREFIX hdf5_plugins  # [osx]
+  requires:
+    - conda-build
 
 about:
   home: https://github.com/nexusformat/HDF5-External-Filter-Plugins
